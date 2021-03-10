@@ -1,25 +1,41 @@
-import logo from './logo.svg';
+import React, {Component} from 'react'
 import './App.css';
+import {connect} from 'react-redux'
+import List from './components/List'
+import {getTodosFunc} from './actions/todos'
+import Input from "./components/Input";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    componentDidMount() {
+        this.props.getTodosFunc('que paaahooo')
+    }
+
+    render() {
+        const {state} = this.props
+        if (state.isLoading) {
+            return (
+                <div>Cargando TODOS...</div>
+            )
+        }
+
+        return (
+            <div>
+                <h1>TODOS APP</h1>
+                <Input />
+                <List todos={state.data}/>
+            </div>
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {state: state.todos}
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getTodosFunc: (text) => dispatch(getTodosFunc(text))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
