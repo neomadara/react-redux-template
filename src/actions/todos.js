@@ -2,7 +2,10 @@ import {
     TODOS_REQUESTING_SUCCESS,
     TODOS_REQUESTING,
     TODOS_REQUESTING_ERROR,
-    TODO_COMPLETE, TODO_ADD_REQUEST_SUCCESS, TODO_ADD, TODO_ADD_REQUEST_ERROR,
+    TODO_COMPLETE,
+    TODO_ADD_REQUEST_SUCCESS,
+    TODO_ADD,
+    TODO_ADD_REQUEST_ERROR,
 } from "../actionTypes/todos";
 import jsonPlaceHolder from "../apis/jsonPlaceHolder"
 
