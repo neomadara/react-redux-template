@@ -7,7 +7,7 @@ import Input from "./components/Input";
 
 class App extends Component {
     componentDidMount() {
-        this.props.getTodosFunc('que paaahooo')
+        this.props.getTodosFunc()
     }
 
     render() {
@@ -34,7 +34,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getTodosFunc: (text) => dispatch(getTodosFunc(text))
+        getTodosFunc: () => dispatch(getTodosFunc())
     }
 }
 

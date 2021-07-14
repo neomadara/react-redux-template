@@ -9,14 +9,13 @@ import {
 } from "../actionTypes/todos";
 import jsonPlaceHolder from "../apis/jsonPlaceHolder"
 
-const getTodos = (text) => async (dispatch) => {
-    console.log(text)
+const getTodos = () => async (dispatch) => {
     dispatch({type: TODOS_REQUESTING})
     try {
         const response = await jsonPlaceHolder.get("/todos")
         const sliceData = response.data.slice(0, 5)
         console.log(sliceData)
-        dispatch({ type: TODOS_REQUESTING_SUCCESS, payload: sliceData }) // just 5 first elements
+        dispatch({ type: TODOS_REQUESTING_SUCCESS, payload: sliceData })
     } catch (e) {
         dispatch({ type: TODOS_REQUESTING_ERROR, payload: e.message() })
     }
@@ -50,7 +49,7 @@ export const addTodoFunc = text => async (dispatch) => {
 
 }
 
-export const getTodosFunc = (text) => async (dispatch) => {
-    await dispatch(getTodos(text))
+export const getTodosFunc = () => async (dispatch) => {
+    await dispatch(getTodos())
 }
 
