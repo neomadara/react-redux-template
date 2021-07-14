@@ -1,31 +1,30 @@
-import React, {Component} from 'react'
+import React, {useEffect} from 'react'
 import './App.css';
 import {connect} from 'react-redux'
 import List from './components/List'
 import {getTodosFunc} from './actions/todos'
 import Input from "./components/Input";
 
-class App extends Component {
-    componentDidMount() {
-        this.props.getTodosFunc()
-    }
+const App = ({state, getTodosFunc}) => {
 
-    render() {
-        const {state} = this.props
-        if (state.isLoading) {
-            return (
-                <div>Cargando TODOS...</div>
-            )
-        }
+    useEffect(() => {
+        getTodosFunc()
+    }, [])
 
+
+    if (state.isLoading) {
         return (
-            <div>
-                <h1>TODOS APP</h1>
-                <Input />
-                <List todos={state.data}/>
-            </div>
-        );
+            <div>loading TODOS...</div>
+        )
     }
+
+    return (
+        <div>
+            <h1>TODO APP</h1>
+            <Input />
+            <List todos={state.data}/>
+        </div>
+    );
 }
 
 const mapStateToProps = (state) => {
