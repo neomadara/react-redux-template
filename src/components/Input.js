@@ -4,16 +4,15 @@ import {addTodoFunc} from '../actions/todos'
 
 const Input = ({submit}) => {
     const [text, setText] = useState('')
+    const ENTER = 'Enter';
 
-    const handleChange = (val) => {
-        setText(val.target.value)
-    }
+    const handleChange = (val) => setText(val.target.value)
 
     const handleSubmit = (event) => {
-        if (event.key === 'Enter') {
+        if (event.key === ENTER)
             submit(text)
             setText('')
-        }
+            event.target.value = ''
     }
 
     return (
