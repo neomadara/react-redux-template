@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { completeFunc } from '../actions/todos'
+import { completeTodo } from '../actions/todos'
 
 const List = ({todos, complete}) => {
     const listItems = todos.map((todo) => {
@@ -20,7 +20,7 @@ const List = ({todos, complete}) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        complete: (id) => dispatch(completeFunc(id))
+        complete: (id) => dispatch(completeTodo(id))
     }
 }
 

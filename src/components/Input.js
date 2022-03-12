@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import {AddTodoService} from '../actions/todos'
+import {AddTodo} from '../actions/todos'
 import PropTypes from 'prop-types';
 
 const Input = ({submit}) => {
@@ -26,7 +26,7 @@ const Input = ({submit}) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        submit: (text) => dispatch(AddTodoService(text))
+        submit: (text) => dispatch(AddTodo(text))
     }
 }
 
