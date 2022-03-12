@@ -7,9 +7,10 @@ import {
     TODO_ADD,
     TODO_ADD_REQUEST_ERROR,
 } from "../actionTypes/todos";
-import jsonPlaceHolder from "../apis/jsonPlaceHolder"
+import jsonPlaceHolder from "../api/jsonPlaceHolder"
 
-const getTodos = () => async (dispatch) => {
+// services
+const GetTodosService = () => async (dispatch) => {
     dispatch({type: TODOS_REQUESTING})
     try {
         const response = await jsonPlaceHolder.get("/todos")
@@ -21,15 +22,7 @@ const getTodos = () => async (dispatch) => {
     }
 }
 
-export const completeFunc = id => async (dispatch, getState) =>  {
-    console.log(getState())
-    dispatch({
-        type: TODO_COMPLETE,
-        payload: id
-    })
-}
-
-export const addTodoFunc = text => async (dispatch) => {
+export const AddTodoService = text => async (dispatch) => {
     dispatch({type: TODO_ADD})
     try {
         const todo = {
@@ -37,7 +30,7 @@ export const addTodoFunc = text => async (dispatch) => {
             completed: false,
             title: text
         }
-        const response = await fetch('http://jsonplaceholder.typicode.com/todos', {
+        const response = await fetch('https://jsonplaceholder.typicode.com/todos', {
             method: 'POST',
             body: JSON.stringify(todo)
         })
@@ -46,10 +39,17 @@ export const addTodoFunc = text => async (dispatch) => {
     } catch (e) {
         dispatch({type: TODO_ADD_REQUEST_ERROR, payload: e.message()})
     }
-
 }
 
-export const getTodosFunc = () => async (dispatch) => {
-    await dispatch(getTodos())
+export const completeFunc = id => async (dispatch, getState) =>  {
+    console.log(getState())
+    dispatch({
+        type: TODO_COMPLETE,
+        payload: id
+    })
+}
+
+export const GetTodos = () => async (dispatch) => {
+    await dispatch(GetTodosService())
 }
 

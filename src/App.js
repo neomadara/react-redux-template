@@ -2,15 +2,15 @@ import React, {useEffect} from 'react'
 import './App.css';
 import {connect} from 'react-redux'
 import List from './components/List'
-import {getTodosFunc} from './actions/todos'
+import {GetTodos} from './actions/todos'
 import Input from "./components/Input";
 import PropTypes from 'prop-types';
 
-const App = ({state, getTodosFunc}) => {
+const App = ({state, GetTodos}) => {
 
     useEffect(() => {
-        getTodosFunc()
-    }, [getTodosFunc])
+        GetTodos()
+    }, [GetTodos])
 
 
     if (state.isLoading) {
@@ -34,13 +34,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getTodosFunc: () => dispatch(getTodosFunc())
+        GetTodos: () => dispatch(GetTodos())
     }
 }
 
 App.propTypes = {
     state: PropTypes.object,
-    getTodosFunc: PropTypes.func
+    GetTodos: PropTypes.func
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
